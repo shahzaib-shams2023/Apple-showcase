@@ -1,0 +1,57 @@
+:root {
+  /* Palette — Optical Darkroom & Mineral Obsidian */
+  --bg-primary: #090a0c;
+  --bg-elevated: #101216;
+  --bg-surface: rgba(14, 16, 20, 0.88);
+  --bg-surface-solid: #14161b;
+
+  --text-primary: #f4f0e8;
+  --text-secondary: #b8b3aa;
+  --text-muted: #7a766e;
+
+  --accent-primary: #c85a6a;
+  --accent-deep: #6b242f;
+  --accent-silver: #dedbd2;
+  --accent-warm: #d4b996;
+
+  --border-hairline: rgba(244, 240, 232, 0.11);
+  --border-strong: rgba(244, 240, 232, 0.28);
+  --border-accent: rgba(200, 90, 106, 0.48);
+
+  /* Typography */
+  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* Fluid Type Scale */
+  --text-xs: 0.72rem;
+  --text-sm: 0.88rem;
+  --text-base: 1rem;
+  --text-lg: 1.15rem;
+  --text-xl: clamp(1.5rem, 2.5vw, 2.35rem);
+  --text-2xl: clamp(2.2rem, 4.6vw, 4.2rem);
+  --text-hero: clamp(3rem, 8.2vw, 7.6rem);
+
+  /* Spacing & Layout */
+  --gutter: clamp(1.25rem, 4.2vw, 4rem);
+  --max-width: 1460px;
+  --radius-sm: 2px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-mid: 450ms;
+  --dur-slow: 900ms;
+
+  /* Layering */
+  --z-canvas: 1;
+  --z-vignette: 2;
+  --z-callouts: 6;
+  --z-content: 10;
+  --z-chrome: 35;
+  --z-drawer: 45;
+  --z-threshold: 60;
+  --z-skip: 120;
+}
