@@ -336,6 +336,15 @@ export function App() {
         Skip to narrative
       </a>
 
+      {/* Atmospheric horizontal scan line — subtle presence indicator */}
+      {phase === 'active' && (
+        <div
+          className="atmosphere-scan"
+          aria-hidden="true"
+          style={{ top: '62%' }}
+        />
+      )}
+
       <div
         ref={stageContainerRef}
         className={`webgl-stage ${isInspectableStage ? 'is-inspectable' : ''}`}

@@ -47,9 +47,7 @@ export function ChapterStage({
   onJumpToChapter,
   onReplayEntrance,
 }: ChapterStageProps) {
-  const currentModel =
-    SLAB_MODELS.find((m) => m.id === selectedModel) ?? SLAB_MODELS[0];
-
+  const currentModel = SLAB_MODELS.find((m) => m.id === selectedModel) ?? SLAB_MODELS[0];
   const [ch1, ch2, ch3, ch4, ch5, ch6] = STORY_CHAPTERS;
 
   return (
@@ -57,30 +55,52 @@ export function ChapterStage({
       id="main-content"
       className={`story-stage ${visible ? 'is-active' : 'is-dormant'}`}
     >
-      {/* CHAPTER I: ARRIVAL */}
+      {/* ════════════════════════════════════════
+          CHAPTER I — ARRIVAL IN SHADOW
+      ════════════════════════════════════════ */}
       <section
         id="chapter-arrival"
         className="chapter-band chapter-arrival container"
         aria-labelledby="ch1-title"
       >
-        <div
-          className={`editorial-column ${
-            activeChapterId === 'arrival' ? 'is-current' : ''
-          }`}
-        >
+        <div className={`editorial-column ${activeChapterId === 'arrival' ? 'is-current' : ''}`}>
           <span className="chapter-kicker">{ch1.kicker}</span>
           <h1 id="ch1-title" className="chapter-display-title">
             Monolith <em>in Shadow</em>.
           </h1>
           <p className="chapter-lead">{ch1.description}</p>
-          <p className="chapter-meta-line">{ch1.meta}</p>
+
+          {/* Dimension annotation strip */}
+          <div className="arrival-annotation" aria-label="Specimen dimensions">
+            <div className="annotation-row">
+              <span className="annotation-tick" />
+              <span className="annotation-value">79.0 mm</span>
+              <span style={{ color: 'var(--text-muted)', fontSize: '0.65rem', letterSpacing: '0.08em' }}>
+                WIDTH
+              </span>
+            </div>
+            <div className="annotation-row">
+              <span className="annotation-tick" />
+              <span className="annotation-value">163.4 mm</span>
+              <span style={{ color: 'var(--text-muted)', fontSize: '0.65rem', letterSpacing: '0.08em' }}>
+                HEIGHT
+              </span>
+            </div>
+            <div className="annotation-row">
+              <span className="annotation-tick" />
+              <span className="annotation-value">13.5 mm</span>
+              <span style={{ color: 'var(--text-muted)', fontSize: '0.65rem', letterSpacing: '0.08em' }}>
+                DEPTH
+              </span>
+            </div>
+          </div>
 
           <p className={`scroll-cue ${hasScrolled ? 'is-faded' : ''}`}>
-            Scroll to navigate the chamber
+            Scroll to direct the camera &amp; light
           </p>
         </div>
 
-        {/* Static architectural schematic shown only when WebGL is unavailable */}
+        {/* Static schematic fallback when WebGL unavailable */}
         <div className="webgl-fallback-plate" aria-label="Static specimen dimensions">
           <div className="fallback-wireframe" aria-hidden="true">
             <div className="fallback-camera-island" />
@@ -93,7 +113,9 @@ export function ChapterStage({
         </div>
       </section>
 
-      {/* CHAPTER II: CONTINUOUS ANATOMY SWEEP */}
+      {/* ════════════════════════════════════════
+          CHAPTER II — EDGE, COPPER & OPTICS
+      ════════════════════════════════════════ */}
       <section
         id="chapter-anatomy"
         className="chapter-anatomy container"
@@ -119,7 +141,10 @@ export function ChapterStage({
         </div>
       </section>
 
-      {/* CHAPTER III: PINNED SCROLL-DRIVEN 43-STRATUM DECONSTRUCTION */}
+      {/* ════════════════════════════════════════
+          CHAPTER III — FORTY-THREE STRATA
+          Pinned scroll-driven Z-axis dissection
+      ════════════════════════════════════════ */}
       <section
         ref={deconstructTrackRef}
         id="chapter-deconstruction"
@@ -136,19 +161,18 @@ export function ChapterStage({
               <p className="chapter-lead">{ch3.description}</p>
               <div className="pinned-datum-row">
                 <span>Optical Z-Separation</span>
-                <span ref={deconstructPctRef} className="pinned-datum-value">
-                  0%
-                </span>
+                <span ref={deconstructPctRef} className="pinned-datum-value">0%</span>
               </div>
             </div>
 
-            <ol className="stratum-sequence">
+            <ol className="stratum-sequence" aria-label="Layer dissection progress">
               {EXPLODE_STRATA.map((st, idx) => {
                 const isActive = idx === activeDeconstructBeat;
                 return (
                   <li
                     key={st.id}
                     className={`stratum-step ${isActive ? 'is-active' : ''}`}
+                    aria-current={isActive ? 'step' : undefined}
                   >
                     <div className="stratum-step-head">
                       <span className="stratum-code">{st.code}</span>
@@ -164,16 +188,17 @@ export function ChapterStage({
         </div>
       </section>
 
-      {/* CHAPTER IV: PROPORTIONS & FINISHES */}
+      {/* ════════════════════════════════════════
+          CHAPTER IV — PROPORTIONS & FINISHES
+          Variant selector + drag inspection
+      ════════════════════════════════════════ */}
       <section
         id="chapter-finishes"
         className="chapter-band chapter-finishes container"
         aria-labelledby="ch4-title"
       >
         <div
-          className={`editorial-column ${
-            activeChapterId === 'finishes' ? 'is-current' : ''
-          }`}
+          className={`editorial-column ${activeChapterId === 'finishes' ? 'is-current' : ''}`}
           data-interactive="true"
         >
           <span className="chapter-kicker">{ch4.kicker}</span>
@@ -185,7 +210,7 @@ export function ChapterStage({
           <div
             className="finish-selector"
             role="radiogroup"
-            aria-label="Select 2026 slab specimen finish and footprint"
+            aria-label="Select 2026 specimen finish and footprint"
           >
             {SLAB_MODELS.map((model) => {
               const selected = model.id === selectedModel;
@@ -215,11 +240,31 @@ export function ChapterStage({
           <div className="finishes-status-row">
             <span>
               {isVariantLoading
-                ? 'Loading GLB specimen…'
+                ? 'Loading specimen…'
                 : `${currentModel.meshCount} meshes · ${currentModel.triangleCount} tris · ${currentModel.fileSizeMb}`}
             </span>
-            <span className="drag-hint">Drag horizontally on specimen to turn</span>
+            <span className="drag-hint">
+              Drag horizontally on specimen to turn
+            </span>
           </div>
+
+          {/* Selected specimen technical data strip */}
+          {!isVariantLoading && (
+            <div className="chapter-meta-strip" aria-label="Selected specimen data">
+              <div className="chapter-meta-strip-item">
+                <span className="chapter-meta-strip-label">Series</span>
+                <span className="chapter-meta-strip-value">{currentModel.series}</span>
+              </div>
+              <div className="chapter-meta-strip-item">
+                <span className="chapter-meta-strip-label">Finish</span>
+                <span className="chapter-meta-strip-value">{currentModel.finish}</span>
+              </div>
+              <div className="chapter-meta-strip-item">
+                <span className="chapter-meta-strip-label">Dimensions</span>
+                <span className="chapter-meta-strip-value">{currentModel.dimensionsMm}</span>
+              </div>
+            </div>
+          )}
 
           {hasInspectOffset && (
             <button
@@ -227,13 +272,16 @@ export function ChapterStage({
               className="reset-angle-link"
               onClick={onResetInspection}
             >
-              Reset inspection angle
+              Reset inspection angle ↩
             </button>
           )}
         </div>
       </section>
 
-      {/* CHAPTER V: PINNED SCROLL-DRIVEN HINGE METAMORPHOSIS */}
+      {/* ════════════════════════════════════════
+          CHAPTER V — HINGE METAMORPHOSIS
+          Pinned scroll-driven fold animation
+      ════════════════════════════════════════ */}
       <section
         ref={foldTrackRef}
         id="chapter-metamorphosis"
@@ -248,12 +296,10 @@ export function ChapterStage({
             </h2>
             <p className="chapter-lead">{ch5.description}</p>
 
-            <div className="fold-telemetry">
+            <div className="fold-telemetry" aria-live="polite" aria-atomic="true">
               <div>
                 <span className="mono-label">Skeletal Articulation</span>
-                <span ref={foldAngleRef} className="fold-degree-readout">
-                  180°
-                </span>
+                <span ref={foldAngleRef} className="fold-degree-readout">180°</span>
               </div>
               <div className="fold-telemetry-right">
                 <span className="mono-label">Posture</span>
@@ -271,16 +317,17 @@ export function ChapterStage({
         </div>
       </section>
 
-      {/* CHAPTER VI: RESOLUTION & ARCHIVE INDEX */}
+      {/* ════════════════════════════════════════
+          CHAPTER VI — RESOLVED FORM
+          Archive index & navigation
+      ════════════════════════════════════════ */}
       <section
         id="chapter-resolution"
         className="chapter-band chapter-resolution container"
         aria-labelledby="ch6-title"
       >
         <div
-          className={`resolution-shell ${
-            activeChapterId === 'resolution' ? 'is-current' : ''
-          }`}
+          className={`resolution-shell ${activeChapterId === 'resolution' ? 'is-current' : ''}`}
         >
           <div className="resolution-top">
             <div className="resolution-copy">
@@ -309,6 +356,7 @@ export function ChapterStage({
             </div>
           </div>
 
+          {/* Specimen archive ledger */}
           <div
             className="archive-ledger"
             role="list"
@@ -351,8 +399,8 @@ export function ChapterStage({
           </div>
 
           <footer className="experience-footer">
-            <span>MONOLITH // 26 — REAL-TIME GLTF 2.0 HARDWARE MONOGRAPH</span>
-            <span>All mesh identifiers and dimensions read directly from project GLBs</span>
+            <span>MONOLITH // 26 — Real-Time GLB 2.0 Hardware Monograph</span>
+            <span>All mesh identifiers &amp; dimensions sourced directly from project GLBs</span>
           </footer>
         </div>
       </section>

@@ -12,6 +12,29 @@ interface ExperienceChromeProps {
   onReplayEntrance: () => void;
 }
 
+function IrisMark({ size = 16 }: { size?: number }) {
+  return (
+    <svg
+      className="chrome-wordmark-iris"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      style={{ color: 'var(--accent-primary)' }}
+    >
+      <circle cx="12" cy="12" r="10.5" stroke="currentColor" strokeWidth="0.75" opacity="0.3" />
+      <circle cx="12" cy="12" r="6.5"  stroke="currentColor" strokeWidth="0.75" opacity="0.5" />
+      <circle cx="12" cy="12" r="2.5"  fill="currentColor" opacity="0.85" />
+      <line x1="12" y1="1.5" x2="12" y2="4"   stroke="currentColor" strokeWidth="0.75" opacity="0.35" />
+      <line x1="12" y1="20"  x2="12" y2="22.5" stroke="currentColor" strokeWidth="0.75" opacity="0.35" />
+      <line x1="1.5" y1="12" x2="4"  y2="12"   stroke="currentColor" strokeWidth="0.75" opacity="0.35" />
+      <line x1="20" y1="12"  x2="22.5" y2="12" stroke="currentColor" strokeWidth="0.75" opacity="0.35" />
+    </svg>
+  );
+}
+
 export function ExperienceChrome({
   visible,
   activeChapter,
@@ -29,7 +52,6 @@ export function ExperienceChrome({
   useEffect(() => {
     if (!indexOpen) return;
     closeBtnRef.current?.focus();
-
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setIndexOpen(false);
@@ -45,6 +67,7 @@ export function ExperienceChrome({
       className={`experience-chrome ${visible ? 'is-visible' : ''}`}
       aria-hidden={!visible}
     >
+      {/* Top Chrome Bar */}
       <header className="chrome-top">
         <div className="chrome-identity">
           <a
@@ -56,13 +79,11 @@ export function ExperienceChrome({
               onJumpToChapter('arrival');
             }}
           >
-            <span className="brand-dot" aria-hidden="true" />
-            <span>MONOLITH // 26</span>
+            <IrisMark size={16} />
+            <span>MONOLITH&nbsp;// 26</span>
           </a>
-          <span className="chrome-divider" aria-hidden="true">
-            /
-          </span>
-          <span className="chrome-chapter-readout" aria-live="polite">
+          <span className="chrome-divider" aria-hidden="true">/</span>
+          <span className="chrome-chapter-readout" aria-live="polite" aria-atomic="true">
             {activeChapter.roman} · {activeChapter.title}
           </span>
         </div>
@@ -76,7 +97,10 @@ export function ExperienceChrome({
               onClick={onToggleSound}
               aria-pressed={soundEnabled}
             >
-              <span>Audio: {soundEnabled ? 'On' : 'Muted'}</span>
+              <span className="sound-wave" aria-hidden="true">
+                <span /><span /><span /><span />
+              </span>
+              <span>Audio{soundEnabled ? ' On' : ' Off'}</span>
             </button>
           )}
 
@@ -94,7 +118,7 @@ export function ExperienceChrome({
         </div>
       </header>
 
-      {/* Passive vertical edge progress spine (Desktop) */}
+      {/* Right-edge vertical progress spine */}
       <nav className="edge-spine" aria-label="Narrative progress">
         <div className="edge-spine-track" aria-hidden="true">
           <div ref={progressFillRef} className="edge-spine-fill" />
@@ -123,7 +147,7 @@ export function ExperienceChrome({
         </ul>
       </nav>
 
-      {/* Accessible Chapter Index Overlay */}
+      {/* Chapter Index Sheet — slides from right edge */}
       {indexOpen && (
         <div
           id="narrative-index-overlay"
@@ -134,7 +158,7 @@ export function ExperienceChrome({
         >
           <div className="index-sheet">
             <div className="index-sheet-head">
-              <span className="mono-label">NARRATIVE INDEX</span>
+              <span className="index-label">Narrative Index</span>
               <button
                 ref={closeBtnRef}
                 type="button"
@@ -167,9 +191,7 @@ export function ExperienceChrome({
                         <strong>{ch.title}</strong>
                         <small>{ch.subtitle}</small>
                       </span>
-                      <span className="index-arrow" aria-hidden="true">
-                        →
-                      </span>
+                      <span className="index-arrow" aria-hidden="true">→</span>
                     </a>
                   </li>
                 );
@@ -194,4 +216,3 @@ export function ExperienceChrome({
     </div>
   );
 }
-
