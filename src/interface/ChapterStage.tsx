@@ -66,7 +66,7 @@ export function ChapterStage({
         <div className={`editorial-column ${activeChapterId === 'arrival' ? 'is-current' : ''}`}>
           <span className="chapter-kicker">{ch1.kicker}</span>
           <h1 id="ch1-title" className="chapter-display-title">
-            Monolith <em>in Shadow</em>.
+            iPhone 18 <em>Pro Max</em>.
           </h1>
           <p className="chapter-lead">{ch1.description}</p>
 
@@ -203,7 +203,7 @@ export function ChapterStage({
         >
           <span className="chapter-kicker">{ch4.kicker}</span>
           <h2 id="ch4-title" className="chapter-heading">
-            Four <em>Monoliths</em>.
+            iPhone 18 <em>Lineup</em>.
           </h2>
           <p className="chapter-lead">{currentModel.notes}</p>
 
@@ -292,7 +292,7 @@ export function ChapterStage({
           <div className="pinned-editorial-column fold-editorial-column">
             <span className="chapter-kicker">{ch5.kicker}</span>
             <h2 id="ch5-title" className="chapter-heading">
-              Hinge <em>Metamorphosis</em>.
+              iPhone <em>Duo Fold</em>.
             </h2>
             <p className="chapter-lead">{ch5.description}</p>
 
@@ -333,7 +333,7 @@ export function ChapterStage({
             <div className="resolution-copy">
               <span className="chapter-kicker">{ch6.kicker}</span>
               <h2 id="ch6-title" className="chapter-display-title">
-                Resolved <em>Form</em>.
+                2026 <em>Lineup</em>.
               </h2>
               <p className="chapter-lead">{ch6.description}</p>
             </div>
@@ -399,7 +399,7 @@ export function ChapterStage({
           </div>
 
           <footer className="experience-footer">
-            <span>MONOLITH // 26 — Real-Time GLB 2.0 Hardware Monograph</span>
+            <span>APPLE // iPHONE 18 &amp; iPHONE DUO FOLD — 2026 SPATIAL STUDY</span>
             <span>All mesh identifiers &amp; dimensions sourced directly from project GLBs</span>
           </footer>
         </div>

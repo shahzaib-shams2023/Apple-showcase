@@ -121,7 +121,7 @@ export function EntranceOverlay({
             <span className="brand-iris threshold-iris-anim" style={{ color: 'var(--accent-primary)' }}>
               <IrisMark size={20} />
             </span>
-            <span>MONOLITH&nbsp;// 26</span>
+            <span>APPLE&nbsp;// iPHONE 18</span>
           </span>
         </div>
 
@@ -148,19 +148,19 @@ export function EntranceOverlay({
         <div className="threshold-eyebrow">
           <span className="threshold-eyebrow-line" />
           <span className="threshold-eyebrow-text">
-            Optical Metrology Chamber · 2026 Specimens
+            Apple 2026 Lineup · iPhone 18 &amp; iPhone Duo Fold
           </span>
         </div>
 
         <h1 className="threshold-title">
-          Inside the
-          <span className="threshold-title-serif">Monolith.</span>
+          iPhone 18
+          <span className="threshold-title-serif">&amp; Duo Fold.</span>
         </h1>
 
         <p className="threshold-premise">
-          A continuous spatial study of forty-three machined layers, real-world
-          proportioned finishes, and an articulated 180° folding architecture —
-          examined under controlled light.
+          A continuous spatial study of the 2026 Apple iPhone 18 Pro, iPhone 18
+          Pro Max, and the articulated 180° iPhone Duo Fold — examined under
+          controlled light.
         </p>
 
         <div className="threshold-admission">
@@ -217,7 +217,7 @@ export function EntranceOverlay({
 
       {/* Bottom data strip */}
       <footer className="threshold-bottom">
-        <span>GLB 2.0 · Five 2026 Hardware Specimens</span>
+        <span>Apple iPhone 18 Pro · Pro Max · Duo Fold</span>
         <span>Scroll-Led Spatial Narrative</span>
       </footer>
     </div>

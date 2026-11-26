@@ -80,7 +80,7 @@ export function ExperienceChrome({
             }}
           >
             <IrisMark size={16} />
-            <span>MONOLITH&nbsp;// 26</span>
+            <span>APPLE&nbsp;// iPHONE 18</span>
           </a>
           <span className="chrome-divider" aria-hidden="true">/</span>
           <span className="chrome-chapter-readout" aria-live="polite" aria-atomic="true">
